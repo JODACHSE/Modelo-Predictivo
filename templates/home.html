@@ -1,0 +1,131 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="hero-section p-4 p-md-5 mb-4 rounded-3">
+    <div class="row align-items-center gy-4">
+        <div class="col-12 col-md-6">
+            <h2 class="display-6 fw-bold">¿Cómo pasamos del <strong>aula</strong> al <strong>desempleo</strong>?
+            </h2>
+            <p class="lead">
+                Modelo de regresión logística que combina certificaciones, <strong>experiencia</strong> y proyectos
+                para estimar la
+                probabilidad de empleo de ingenieros de sistemas y computación de la Universidad de Cundinamarca.
+            </p>
+            <p class="lead">
+                Descubre si tus habilidades, experiencia y formación <strong>son suficientes</strong> en el mercado
+                actual
+                para garantizar un empleo justo y bien remunerado.
+            </p>
+            <a href="{{ url_for('modelo_predictivo') }}" class="btn btn-hero btn-lg mt-3">
+                Interactua el Modelo
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 text-center">
+            <img src="{{ url_for('static', filename='img/programador_pixel_art_sora.png') }}"
+                alt="Programador Pixel Art" class="img-fluid hero-img" />
+        </div>
+
+    </div>
+</div>
+
+<div class="row gy-4">
+    <div class="col-12 col-md-4">
+        <div class="card h-100 bg-body-secondary border-primary shadow-sm">
+            <div class="card-body d-flex flex-column">
+                <i class="bi bi-bar-chart-line fs-1 text-primary mb-3"></i>
+                <h5 class="card-title">Justificación</h5>
+                <p class="card-text flex-grow-1">
+                    Abordamos la brecha entre la formación académica y las demandas reales del mercado laboral para
+                    mejorar la empleabilidad.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="card h-100 bg-body-secondary border-success shadow-sm">
+            <div class="card-body d-flex flex-column">
+                <i class="bi bi-bullseye fs-1 text-success mb-3"></i>
+                <h5 class="card-title">Objetivos</h5>
+                <p class="card-text flex-grow-1">
+                    Identificar las competencias y certificaciones clave que más impactan la inserción laboral de
+                    nuestros graduados.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="card h-100 bg-body-secondary border-warning shadow-sm">
+            <div class="card-body d-flex flex-column">
+                <i class="bi bi-question-circle fs-1 text-warning mb-3"></i>
+                <h5 class="card-title">Preguntas Clave</h5>
+                <ul class="list-unstyled flex-grow-1 mb-0">
+                    <li>• ¿Título vs. certificaciones técnicas?</li>
+                    <li>• ¿Tipo y años de experiencia más valorados?</li>
+                    <li>• ¿Mejor combinación de variables para el empleo?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div id="carouselODS" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
+    <!-- Slides -->
+    <div class="carousel-inner">
+        <!-- ODS 4 -->
+        <div class="carousel-item active bg-ods4 p-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+                <a class="text-white" href="{{ url_for('objetivos') }}">
+                    <div class="me-md-4 mb-3 mb-md-0 text-center flex-shrink-0">
+                        <img src="{{ url_for('static', filename='img/ODS/ODS_4.svg') }}"
+                            alt="ODS 4 Educación de Calidad" class="img-fluid ods-img" style="cursor: pointer;">
+                    </div>
+                    <div class="caption-wrapper text-center text-md-start">
+                        <h5>ODS 4</h5>
+                        <p class="mb-0">Educación de Calidad</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ODS 8 -->
+        <div class="carousel-item bg-ods8 p-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+                <a class="text-white" href="{{ url_for('objetivos') }}">
+                    <div class="me-md-4 mb-3 mb-md-0 text-center flex-shrink-0">
+                        <img src="{{ url_for('static', filename='img/ODS/ODS_8.svg') }}"
+                            alt="ODS 8 Trabajo decente y crecimiento económico" class="img-fluid ods-img"
+                            style="cursor: pointer;">
+                    </div>
+                    <div class="caption-wrapper text-center text-md-start">
+                        <h5>ODS 8</h5>
+                        <p class="mb-0">Trabajo decente y crecimiento económico</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselODS" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselODS" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+
+<br>
+{% endblock %}

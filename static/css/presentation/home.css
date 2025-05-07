@@ -1,0 +1,124 @@
+/*========================================
+    Temas claro/oscuro
+========================================*/
+html[data-bs-theme="light"] {
+    --hero-bg: var(--bs-body-secondary);
+    --hero-text-base: var(--bs-body-color);
+    --hero-border: var(--bs-primary);
+    --hero-strong: var(--bs-primary);
+    --hero-btn-hover: var(--bs-primary);
+}
+
+html[data-bs-theme="dark"] {
+    --hero-bg: #212529;
+    --hero-text-base: #e9ecef;
+    --hero-border: #00ff95;
+    --hero-strong: #00ff95;
+    --hero-btn-hover: #00ff95;
+}
+
+/*========================================
+    Sección Hero
+========================================*/
+.hero-section {
+    background-color: var(--hero-bg);
+    color: var(--hero-text-base);
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+.hero-section h2,
+.hero-section p {
+    color: var(--hero-text-base);
+}
+
+.hero-section strong {
+    color: var(--hero-strong);
+}
+
+.hero-img {
+    max-width: 100%;
+    border: 4px solid var(--hero-border);
+    border-radius: .5rem;
+}
+
+/*========================================
+    Botón “Interactúa el Modelo”
+========================================*/
+.btn-hero {
+    background: transparent;
+    color: var(--hero-border);
+    border: 2px solid var(--hero-border);
+    transition: background .2s, color .2s;
+}
+
+.btn-hero:hover {
+    background: var(--hero-btn-hover);
+    color: var(--hero-bg);
+}
+
+/* En tema claro, ajusta el hover/esquema */
+html[data-bs-theme="light"] .btn-hero {
+    color: var(--bs-body-color);
+}
+
+html[data-bs-theme="light"] .btn-hero:hover {
+    background-color: var(--bs-primary);
+    color: var(--bs-white);
+}
+
+/*========================================
+    Carrusel ODS
+========================================*/
+/* Fondos personalizados */
+.bg-ods4 {
+    background-color: #bc1f2c !important;
+}
+
+.bg-ods8 {
+    background-color: #a31c44 !important;
+}
+
+/* Imagen dentro del slide */
+.ods-img {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+/* Separación para que caption no choque con indicadores */
+.carousel-indicators {
+    bottom: 3rem;
+}
+
+/* Margen extra debajo del contenido */
+.caption-wrapper {
+    margin-bottom: 2rem;
+}
+
+/* 1) Quitar subrayado de todos los enlaces del carrusel */
+#carouselODS a {
+    text-decoration: none !important;
+}
+
+/* 2) Hacer que el <a> sea flex y centre su contenido */
+#carouselODS .carousel-item>.d-flex>a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3) En pantallas md+ pasa a fila y alinea texto a la izquierda */
+@media (min-width: 768px) {
+    #carouselODS .carousel-item>.d-flex>a {
+        flex-direction: row;
+    }
+
+    #carouselODS .caption-wrapper {
+        text-align: left;
+        margin-left: 1rem;
+        /* separación entre imagen y texto */
+    }
+}

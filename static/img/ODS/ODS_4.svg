@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="160px" viewBox="0 0 160 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>sdg-4</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sdg-4">
+            <g id="SDG-icon-4">
+                <rect id="Rectangle-path" x="0" y="0" width="160" height="160"></rect>
+                <g id="Group-21" transform="translate(35.000000, 43.000000)" fill-rule="nonzero" fill="#FFFFFF">
+                    <polygon id="Shape" points="35.185 22.307 6.324 5.642 6.324 59.553 35.185 68.261"></polygon>
+                    <polygon id="Shape" points="38.358 22.417 38.358 68.279 67.407 59.546 67.407 5.644"></polygon>
+                    <path d="M90.064,4.277 C90.064,2.389 88.535,0.861 86.651,0.861 C84.762,0.861 83.236,2.389 83.236,4.277 L83.236,7.958 L90.064,7.958 L90.064,4.277 Z" id="Shape"></path>
+                    <polygon id="Shape" points="84.083 58.597 83.235 58.597 86.651 70.531 90.062 58.597 89.214 58.597 90.062 58.597 90.062 10.632 89.214 10.632 88.366 10.632 87.468 10.632 85.768 10.632 84.931 10.632 84.083 10.632 83.233 10.632 83.233 58.597"></polygon>
+                    <polygon id="Shape" points="73.606 7.957 70.512 5.513 70.512 61.015 38.444 71.377 36.96 71.377 36.667 71.377 35.184 71.377 3.258 62.458 3.258 5.513 0.163 7.957 0.163 64.629 35.038 74.283 38.589 74.283 70.764 64.067 73.606 63.231"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

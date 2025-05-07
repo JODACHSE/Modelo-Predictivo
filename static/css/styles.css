@@ -1,0 +1,46 @@
+.navbar-brand img {
+    margin-left: 20px;
+}
+
+.nav-link {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background-color: var(--bs-primary) !important;
+    color: #fff !important;
+    border-radius: .5rem;
+    transition: background-color .2s;
+}
+
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+}
+
+.navbar[data-bs-theme="light"] .nav-link {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.navbar[data-bs-theme="light"] .nav-link:hover,
+.navbar[data-bs-theme="light"] .nav-link.active {
+    background-color: var(--bs-primary) !important;
+    color: #fff !important;
+}
+
+.brand-text {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.brand-footer {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 400;
+    font-size: 1rem;
+}
