@@ -1,6 +1,185 @@
 {% extends 'app/base.html' %}
 
-{% block title %}Metodologia{% endblock %}
+{% block title %}Metodología{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation/objetivos.css') }}">
+{% endblock %}
 
 {% block content %}
+
+<!-- Fuentes de Datos y Metodología -->
+<section class="mb-5">
+    <h3 class="display-6 fw-bold mb-4">Fuentes de Datos y Metodología</h3>
+    <div class="row gy-4">
+
+        <!-- SPADIES -->
+        <div class="col-12 col-md-6">
+            <div class="card h-100 bg-body-secondary border-primary shadow-sm objetivos-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"><strong>SPADIES – Ministerio de Educación</strong></h5>
+                    <p class="card-text flex-grow-1">
+                        Utilizaremos datos de SPADIES del Ministerio de Educación para analizar las tasas de deserción
+                        estudiantil y su relación con las oportunidades laborales.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demanda Laboral -->
+        <div class="col-12 col-md-6">
+            <div class="card h-100 bg-body-secondary border-success shadow-sm objetivos-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"><strong>Demanda Laboral</strong></h5>
+                    <p class="card-text flex-grow-1">
+                        Complementar con datos de portales de empleo usando web scraping.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Encuestas Anónimas -->
+        <div class="col-12 col-md-6">
+            <div class="card h-100 bg-body-secondary border-warning shadow-sm objetivos-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"><strong>Encuestas Anónimas</strong></h5>
+                    <p class="card-text flex-grow-1">
+                        Realizar encuestas a egresados de manera anónima para recopilar datos sobre su experiencia
+                        laboral y su percepción de los factores que influyeron en su contratación.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Datos Abiertos y Estudios Existentes -->
+        <div class="col-12 col-md-6">
+            <div class="card h-100 bg-body-secondary border-info shadow-sm objetivos-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"><strong>Datos Abiertos y Estudios Existentes</strong></h5>
+                    <p class="card-text flex-grow-1">
+                        Estadísticas sobre empleabilidad de egresados de instituciones educativas a nivel técnico,
+                        tecnólogo o profesional en Colombia.
+                        Complementaremos estos datos con encuestas anónimas para obtener información más detallada.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<hr>
+
+<!-- Pregunta Clave #3 -->
+<section id="key-question-3" class="mb-5">
+    <h2 class="h4 fw-bold mb-4"><span>Combinación de Variables</span></h2>
+
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item">
+            <h5 class="mb-1"><strong>Variable Clave</strong></h5>
+            <p class="mb-0">
+                ¿Qué combinación de variables (certificaciones + experiencia + proyectos) maximiza la probabilidad de
+                contratación?
+            </p>
+        </li>
+        <li class="list-group-item">
+            <h5 class="mb-1"><strong>Modelo de Predicción</strong></h5>
+            <p class="mb-0">
+                Nuestro modelo de regresión logística nos permitirá identificar la combinación óptima de
+                certificaciones, experiencia y proyectos que maximice las oportunidades de empleo.
+            </p>
+        </li>
+    </ol>
+</section>
+
+<hr>
+
+<!-- Pregunta Clave #2 -->
+<section id="key-question-2" class="mb-5">
+    <h2 class="h4 fw-bold mb-4"><span>Pregunta Clave #2: Influencia de la Experiencia Práctica</span></h2>
+    <div class="row gy-4">
+
+        <!-- Tipo de Experiencia -->
+        <div class="col-12 col-md-6">
+            <div class="card text-bg-danger mb-3">
+                <div class="card-header">Tipo de Experiencia</div>
+                <div class="card-body">
+                    <h5 class="card-title">Tipo de Experiencia</h5>
+                    <p class="card-text">
+                        ¿Qué tipo de experiencia laboral (proyectos universitarios, pasantías, empleos formales) tiene
+                        mayor influencia en la decisión de contratación?
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Años de Experiencia -->
+        <div class="col-12 col-md-6">
+            <div class="card text-bg-warning mb-3">
+                <div class="card-header">Años de Experiencia</div>
+                <div class="card-body">
+                    <h5 class="card-title">Años de Experiencia</h5>
+                    <p class="card-text">
+                        ¿Existe un número mínimo de años de experiencia que incremente significativamente la
+                        empleabilidad?
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <p class="mt-3">
+        Investigaremos si las empresas valoran más la experiencia adquirida en proyectos universitarios, pasantías o
+        empleos formales. Además, determinaremos si existe un umbral de años de experiencia que marque una diferencia
+        significativa en las oportunidades laborales.
+    </p>
+</section>
+
+<hr>
+
+<section id="viability-risk-analysis" class="mb-5">
+    <h2 class="h4 fw-bold mb-4"><span>Análisis de Viabilidad y Riesgos del Modelo</span></h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Riesgo</th>
+                    <th scope="col">Impacto</th>
+                    <th scope="col">Mitigación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Datos insuficientes</td>
+                    <td>Modelo poco preciso</td>
+                    <td>Complementar con web scraping de portales de empleo.</td>
+                </tr>
+                <tr>
+                    <td>Privacidad de datos</td>
+                    <td>Sanciones legales</td>
+                    <td>Anonimizar datos y cumplir con la Ley 1581 de 2012.</td>
+                </tr>
+                <tr>
+                    <td>Resistencia institucional</td>
+                    <td>Resultados no implementados</td>
+                    <td>Presentar evidencias claras del impacto en talleres.</td>
+                </tr>
+                <tr>
+                    <td>Cambios en el mercado</td>
+                    <td>Modelo obsoleto</td>
+                    <td>Monitorear tendencias y ajustar variables predictoras.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="mt-4 fw-semibold">El proyecto es técnica y organizacionalmente viable, siempre que:</p>
+    <ol>
+        <li>Se mantenga una recolección rigurosa y ética de datos.</li>
+        <li>Se establezcan alianzas sólidas con empresas y se involucre a líderes académicos.</li>
+        <li>Se diseñe un plan de mantenimiento y actualización del modelo.</li>
+    </ol>
+</section>
+
 {% endblock %}
