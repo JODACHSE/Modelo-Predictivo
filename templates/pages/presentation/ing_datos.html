@@ -1,6 +1,188 @@
 {% extends 'app/base.html' %}
 
-{% block title %}Ing.Datos{% endblock %}
+{% block title %}Ing. Datos — Modelo Predictivo{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation/ing_datos.css') }}">
+{% endblock %}
 
 {% block content %}
+<!-- Introducción y Justificación General -->
+<h1 class="page-title mb-5">Ingeniería de Datos</h1>
+
+<!-- Dropdown - Contenido de la página -->
+<div class="dropdown on-this-page mb-4">
+    <button class="btn btn-outline-primary dropdown-toggle" type="button"
+            id="onThisPageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        En esta página
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="onThisPageDropdown">
+        <li><a class="dropdown-item" href="#seleccion">Selección de datos</a></li>
+        <li><a class="dropdown-item" href="#limpieza">Limpieza de datos</a></li>
+        <li><a class="dropdown-item" href="#transformacion">Transformación</a></li>
+        <li><a class="dropdown-item" href="#documentacion">Documentación</a></li>
+    </ul>
+</div>
+
+<!-- Selección -->
+<section id="seleccion" class="hero-section mb-5">
+    <h2 class="display-6 fw-bold mb-3"><strong>Selección de datos</strong></h2>
+    <p class="lead">
+        Elegir mal la fuente es como construir un edificio sobre arena. Aquí apuntamos a:
+    </p>
+    <ul class="mb-3">
+        <li><strong>SPADIES (Ministerio de Educación):</strong> Tasas de deserción y rendimiento académico para entender contextos de egreso.</li>
+        <li><strong>Portales laborales (computrabajo, elempleo):</strong> Ofertas de empleo y habilidades demandadas, extraídas por web scraping.</li>
+        <li><strong>Encuestas anónimas a egresados:</strong> Percepción de factorización de título, certificaciones y experiencia.</li>
+        <li><strong>Datos abiertos de empleabilidad:</strong> Estadísticas nacionales para validar resultados.</li>
+    </ul>
+    <p>
+        Con este combo se logra cubrir la oferta académica, la demanda del mercado y la voz del egresado.
+    </p>
+</section>
+
+<!-- Limpieza -->
+<section id="limpieza" class="mb-5">
+    <h3 class="mb-3">Limpieza de datos</h3>
+    <div class="row g-4">
+        <!-- Errores e inconsistencias -->
+        <div class="col-12 col-md-4">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+            <div class="flip-card-front d-flex flex-column align-items-center justify-content-center p-4 bg-body-secondary rounded">
+                <i class="bi bi-trash fs-1 text-danger mb-3"></i>
+                <strong>Errores e inconsistencias</strong>
+            </div>
+            <div class="flip-card-back p-4 bg-body rounded">
+                <ul class="mb-0">
+                <li>Eliminar duplicados: evitar que un mismo egresado aparezca varias veces y sesgue la logística.</li>
+                <li>Corregir formatos de fecha y texto: unificar YYYY-MM-DD y tipografías.</li>
+                <li>Detectar outliers en años de experiencia y salario esperado para no romper el modelo.</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- Valores faltantes -->
+        <div class="col-12 col-md-4">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+            <div class="flip-card-front d-flex flex-column align-items-center justify-content-center p-4 bg-body-secondary rounded">
+                <i class="bi bi-droplet fs-1 text-warning mb-3"></i>
+                <strong>Valores faltantes</strong>
+            </div>
+            <div class="flip-card-back p-4 bg-body rounded">
+                <ul class="mb-0">
+                <li>Imputación inteligente: usar media para años de experiencia, moda para certificaciones.</li>
+                <li>Eliminar registros críticos sin reemplazo si la ausencia es excesiva (> 30%).</li>
+                <li>Documentar cada estrategia: así cumplimos con la trazabilidad y satisfacción académica.</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- Privacidad -->
+        <div class="col-12 col-md-4">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+            <div class="flip-card-front d-flex flex-column align-items-center justify-content-center p-4 bg-body-secondary rounded">
+                <i class="bi bi-shield-lock fs-1 text-success mb-3"></i>
+                <strong>Privacidad</strong>
+            </div>
+            <div class="flip-card-back p-4 bg-body rounded">
+                <ul class="mb-0">
+                <li>Anónimo según Ley 1581 de 2012: ni nombres, ni identificaciones.</li>
+                <li>Enmascaramiento de datos sensibles: saldos, puntajes de examen, emails.</li>
+                <li>Control de acceso en repositorio: solo equipo de análisis y docente.</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Transformación -->
+<section id="transformacion" class="hero-section mb-5">
+    <h2 class="display-6 fw-bold mb-3"><strong>Transformación</strong></h2>
+    <p class="lead">
+        Aquí convertimos datos crudos en variables que el algoritmo entiende:
+    </p>
+    <ul class="mb-3">
+        <li><strong>Ingeniería de características:</strong> dummy variables para certificaciones (AWS, Cisco, Scrum), tipo de título (técnico, tecnólogo, profesional).</li>
+        <li><strong>Interacciones:</strong> combinar experiencia × certificaciones para detectar sinergias.</li>
+        <li><strong>Normalización/Estandarización:</strong> escalar años de experiencia y tasas de deserción para no saturar la función sigmoide.</li>
+    </ul>
+    <p>
+        Resultado: un dataset listo para alimentar la regresión logística y responder nuestras preguntas clave.
+    </p>
+</section>
+
+<!-- Documentación -->
+<!-- Documentación -->
+<section id="documentacion" class="mb-5">
+    <h3 class="mb-3">Documentación</h3>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+    <!-- Versionado -->
+    <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body d-flex">
+            <i class="bi bi-github  fs-1 me-3"></i>
+            <div>
+            <h5 class="card-title">Versionado con GitHub</h5>
+            <p class="card-text">Cada notebook y script en branches, con commits claros.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Orígenes y limpieza -->
+    <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body d-flex">
+            <i class="bi bi-journal-code fs-1 text-primary me-3"></i>
+            <div>
+            <h5 class="card-title">Registro de orígenes y limpieza</h5>
+            <p class="card-text">
+                Un <code>CHANGELOG.md</code> donde se explique <em>por qué</em> y <em>cómo</em> se limpió cada columna.
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Diccionario de datos -->
+    <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body d-flex">
+            <i class="bi bi-book fs-1 text-success me-3"></i>
+            <div>
+            <h5 class="card-title">Diccionario de datos</h5>
+            <p class="card-text">
+                Descripción de variables nuevas, su tipo, rango y razón de negocio (e.g. <code>cert_scrum</code>: 1 si tiene Scrum Master, 0 si no).
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Reporte de riesgos -->
+    <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body d-flex">
+            <i class="bi bi-exclamation-triangle fs-1 text-warning me-3"></i>
+            <div>
+            <h5 class="card-title">Reporte de riesgos</h5>
+            <p class="card-text">
+                Estrategias de mitigación: datos insuficientes, resistencias institucionales y actualizaciones de mercado.
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/presentation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/presentation/ing_datos.js') }}"></script>
 {% endblock %}
