@@ -4,4 +4,179 @@
 
 {% block content %}
     <h1>Modelo predictivo</h1>
+    <header class="text-center bg-primary text-white p-4 shadow-lg">
+        <h1 class="fw-bold">Modelo de Predicción de Empleo</h1>
+        <h2 class="fs-4">Descubre si tienes posibilidades de conseguir empleo basado en tu perfil</h2>
+    </header>
+
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card shadow-lg p-4 rounded-3" style="max-width: 600px; width: 100%;">
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="years_of_experience">Años de experiencia</label>
+                        <input type="number" name="years_of_experience" id="years_of_experience" class="form-control" placeholder="Ingresa tus años de experiencia" required step="1">
+                    </div>
+
+                    <!-- Lenguajes de Programación: Dropdown múltiple con íconos -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="languages">Lenguajes de programación que conoces:</label>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="languagesButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Selecciona los lenguajes
+                            </button>
+                            <ul class="dropdown-menu w-100 bg-white" id="languagesMenu">
+                                <li><a class="dropdown-item" href="#" data-value="Python" data-icon="fab fa-python">Python <i class="fab fa-python"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="JavaScript" data-icon="fab fa-js">JavaScript <i class="fab fa-js"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Java" data-icon="fab fa-java">Java <i class="fab fa-java"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="C++" data-icon="fab fa-cuttlefish">C++ <i class="fab fa-cuttlefish"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Ruby" data-icon="fas fa-gem">Ruby <i class="fas fa-gem"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="C#" data-icon="fab fa-cuttlefish">C# <i class="fab fa-cuttlefish"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="PHP" data-icon="fab fa-php">PHP <i class="fab fa-php"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Swift" data-icon="fab fa-app-store-ios">Swift <i class="fab fa-app-store-ios"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Go" data-icon="fab fa-go">Go <i class="fab fa-go"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Kotlin" data-icon="fab fa-kotlin">Kotlin <i class="fab fa-kotlin"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Mostrar lenguajes seleccionados como tarjetas -->
+                        <div id="selected-languages" class="mt-3 d-flex flex-wrap"></div>
+                        <!-- Campo oculto para enviar los lenguajes seleccionados -->
+                        <input type="hidden" name="languages" id="languages">
+                    </div>
+
+                    <!-- Habilidades Blandas: Dropdown múltiple -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="soft_skills">Selecciona tus habilidades blandas:</label>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="softSkillsButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Selecciona las habilidades
+                            </button>
+                            <ul class="dropdown-menu w-100 bg-white" id="softSkillsMenu">
+                                <li><a class="dropdown-item" href="#" data-value="Comunicación" data-icon="fas fa-comment">Comunicación <i class="fas fa-comment"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Trabajo en equipo" data-icon="fas fa-users">Trabajo en equipo <i class="fas fa-users"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Liderazgo" data-icon="fas fa-user-tie">Liderazgo <i class="fas fa-user-tie"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Creatividad" data-icon="fas fa-lightbulb">Creatividad <i class="fas fa-lightbulb"></i></a></li>
+                                <li><a class="dropdown-item" href="#" data-value="Gestión del tiempo" data-icon="fas fa-clock">Gestión del tiempo <i class="fas fa-clock"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Mostrar habilidades blandas seleccionadas como tarjetas -->
+                        <div id="selected-soft-skills" class="mt-3 d-flex flex-wrap"></div>
+                        <!-- Campo oculto para enviar las habilidades seleccionadas -->
+                        <input type="hidden" name="soft_skills" id="soft_skills">
+                    </div>
+
+                    <!-- Expectativa Salarial: Dropdown -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="salary_expectation">Expectativa salarial (rango en pesos colombianos)</label>
+                        <select name="salary_expectation" id="salary_expectation" class="form-select" required>
+                            <option value="1600000">1,600,000 COP</option>
+                            <option value="3000000">3,000,000 COP</option>
+                            <option value="5000000">5,000,000 COP</option>
+                            <option value="7000000">7,000,000 COP</option>
+                            <option value="10000000">10,000,000 COP</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Predecir</button>
+                </form>
+
+                {% if result is not none %}
+                <div class="alert alert-info text-center mt-4 fw-bold">
+                    ¿Se puede conseguir empleo?
+                    <br>
+                    <span class="fs-4">{{ 'Sí' if result == 'Sí' else 'No' }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para manejar la selección de lenguajes
+        let selectedLanguages = [];
+        document.querySelectorAll("#languagesMenu .dropdown-item").forEach(function(item) {
+            item.addEventListener("click", function(event) {
+                event.preventDefault();
+                const language = item.getAttribute("data-value");
+                const icon = item.getAttribute("data-icon");
+    
+                // Verificar si ya se seleccionó este lenguaje
+                if (!selectedLanguages.some(item => item.language === language)) {
+                    selectedLanguages.push({ language, icon });
+                    updateSelectedLanguages();
+                }
+            });
+        });
+    
+        function updateSelectedLanguages() {
+            const container = document.getElementById("selected-languages");
+            container.innerHTML = "";  // Limpiar el contenedor antes de agregar las nuevas tarjetas
+    
+            // Iterar sobre los lenguajes seleccionados y crear las tarjetas
+            selectedLanguages.forEach(function({ language, icon }) {
+                const card = document.createElement("div");
+                card.classList.add("card", "mb-2", "p-3", "d-inline-block", "me-2", "language-card");
+                card.innerHTML = `<i class="${icon}"></i> <strong>${language}</strong> <button class="btn-close btn-sm" onclick="removeCard(this, 'languages')"></button>`;
+                container.appendChild(card);  // Agregar la tarjeta al contenedor
+            });
+    
+            // Actualizar el campo oculto con los lenguajes seleccionados
+            const languageValues = selectedLanguages.map(item => item.language).join(', ');
+            document.getElementById("languages").value = languageValues;
+        }
+    
+        // Función para manejar la selección de habilidades blandas
+        let selectedSoftSkills = [];
+        document.querySelectorAll("#softSkillsMenu .dropdown-item").forEach(function(item) {
+            item.addEventListener("click", function(event) {
+                event.preventDefault();
+                const skill = item.getAttribute("data-value");
+                const icon = item.getAttribute("data-icon");
+    
+                // Verificar si ya se seleccionó esta habilidad
+                if (!selectedSoftSkills.some(item => item.skill === skill)) {
+                    selectedSoftSkills.push({ skill, icon });
+                    updateSelectedSoftSkills();
+                }
+            });
+        });
+    
+        function updateSelectedSoftSkills() {
+            const container = document.getElementById("selected-soft-skills");
+            container.innerHTML = "";  // Limpiar el contenedor antes de agregar las nuevas tarjetas
+    
+            // Iterar sobre las habilidades seleccionadas y crear las tarjetas
+            selectedSoftSkills.forEach(function({ skill, icon }) {
+                const card = document.createElement("div");
+                card.classList.add("card", "mb-2", "p-3", "d-inline-block", "me-2", "skill-card");
+                card.innerHTML = `<i class="${icon}"></i> <strong>${skill}</strong> <button class="btn-close btn-sm" onclick="removeCard(this, 'soft_skills')"></button>`;
+                container.appendChild(card);  // Agregar la tarjeta al contenedor
+            });
+    
+            // Actualizar el campo oculto con las habilidades seleccionadas
+            const skillValues = selectedSoftSkills.map(item => item.skill).join(', ');
+            document.getElementById("soft_skills").value = skillValues;
+        }
+    
+        // Función para eliminar tarjetas
+        function removeCard(button, type) {
+            const card = button.parentElement;
+            card.remove();
+            if (type === "languages") {
+                const index = selectedLanguages.findIndex(item => item.language === card.querySelector("strong").textContent);
+                if (index > -1) {
+                    selectedLanguages.splice(index, 1);
+                    updateSelectedLanguages();
+                }
+            } else if (type === "soft_skills") {
+                const index = selectedSoftSkills.findIndex(item => item.skill === card.querySelector("strong").textContent);
+                if (index > -1) {
+                    selectedSoftSkills.splice(index, 1);
+                    updateSelectedSoftSkills();
+                }
+            }
+        }
+    </script>
+    
+
 {% endblock %}
