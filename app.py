@@ -1,6 +1,6 @@
 """
-Proyecto - Machine Learning - Universidad de Cundinamarca - 601N
-Modelo de prediccion para lla insercion laboral de estudiantes de ingenieria en sistemas y computacion
+Proyecto - Machine Learning(conceptos) - Universidad de Cundinamarca - 601N
+Modelo de prediccion para la insercion laboral de estudiantes de ingeniería en sistemas y computación
 @author: Andres Rodriguez
 @author: Jonathan Chavarro
 """
@@ -19,21 +19,30 @@ app.config["ENV"] = "development"
 def home():
     return render_template("home.html")
 
-# Paginas de presentation
-@app.route("/objetivos")
-def objetivos():
-    return render_template("pages/presentation/objetivos.html")
+# Entendimiento del negocio y de los datos
+@app.route("/entendimiento")
+def entendimiento():
+    return render_template("pages/presentation/entendimiento.html")
 
+# Ingeniería de datos
+@app.route("/ingenieria-datos")
+def ing_datos():
+    return render_template("pages/presentation/ing_datos.html")
 
-@app.route("/metodologia")
-def metodologia():
-    return render_template("pages/presentation/metodologia.html")
+# Ingeniería del modelo
+@app.route("/ingenieria-modelo")
+def ing_modelo():
+    return render_template("pages/presentation/ing_modelo.html")
 
+# Modelo Predictivo
+@app.route("/modelo-predictivo")
+def modelo_predictivo():
+    return render_template("pages/model/modelo_predictivo.html")
 
+# Conclusiones y Contacto
 @app.route("/conclusiones")
 def conclusiones():
-    return render_template("pages/presentation/conclusiones.html")
-
+    return render_template("pages/conclusiones.html")
 
 @app.route("/contacto")
 def contacto():

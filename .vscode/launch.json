@@ -5,7 +5,7 @@
             "name": "Python: Flask",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/app.py",
+            "module": "flask",
             "env": {
                 "FLASK_APP": "app.py",
                 "FLASK_ENV": "development",
@@ -15,7 +15,7 @@
                 "run"
             ],
             "jinja": true,
-            "justMyCode": false,
+            "justMyCode": false
         }
     ]
 }

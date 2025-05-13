@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .navbar-brand img {
     margin-left: 20px;
 }
@@ -43,4 +47,108 @@
     font-family: 'Cinzel Decorative', serif;
     font-weight: 400;
     font-size: 1rem;
+}
+
+html[data-bs-theme="light"] {
+    --hero-bg: var(--bs-body-secondary);
+    --hero-text-base: var(--bs-body-color);
+    --hero-border: var(--bs-primary);
+    --hero-strong: var(--bs-primary);
+    --hero-btn-hover: var(--bs-primary);
+}
+
+html[data-bs-theme="dark"] {
+    --hero-bg: #212529;
+    --hero-text-base: #e9ecef;
+    --hero-border: #00ff95;
+    --hero-strong: #00ff95;
+    --hero-btn-hover: #00ff95;
+}
+
+.hero-section {
+    background-color: var(--hero-bg);
+    color: var(--hero-text-base);
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+.hero-section h2,
+.hero-section p {
+    color: var(--hero-text-base);
+}
+
+.hero-section strong {
+    color: var(--hero-strong);
+}
+
+.hero-img {
+    max-width: 100%;
+    border: 4px solid var(--hero-border);
+    border-radius: .5rem;
+}
+
+.btn-hero {
+    background: transparent;
+    color: var(--hero-border);
+    border: 2px solid var(--hero-border);
+    transition: background .2s, color .2s;
+}
+
+.btn-hero:hover {
+    background: var(--hero-btn-hover);
+    color: var(--hero-bg);
+}
+
+html[data-bs-theme="light"] .btn-hero {
+    color: var(--bs-body-color);
+}
+
+html[data-bs-theme="light"] .btn-hero:hover {
+    background-color: var(--bs-primary);
+    color: var(--bs-white);
+}
+
+.bg-ods4 {
+    background-color: #bc1f2c !important;
+}
+
+.bg-ods8 {
+    background-color: #a31c44 !important;
+}
+
+.ods-img {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.carousel-indicators {
+    bottom: 3rem;
+}
+
+.caption-wrapper {
+    margin-bottom: 2rem;
+}
+
+#carouselODS a {
+    text-decoration: none !important;
+}
+
+#carouselODS .carousel-item>.d-flex>a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    #carouselODS .carousel-item>.d-flex>a {
+        flex-direction: row;
+    }
+
+    #carouselODS .caption-wrapper {
+        text-align: left;
+        margin-left: 1rem;
+    }
 }

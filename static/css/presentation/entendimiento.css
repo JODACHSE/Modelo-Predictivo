@@ -1,0 +1,445 @@
+#objetivos-proyecto {
+    background: linear-gradient(135deg, var(--hero-bg) 0%, rgba(var(--bs-primary-rgb), 0.05) 100%);
+    border-left: 5px solid var(--hero-border);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#objetivos-proyecto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+#objetivos-proyecto strong {
+    position: relative;
+    z-index: 1;
+}
+
+#objetivos-proyecto strong::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    background-color: rgba(var(--bs-primary-rgb), 0.2);
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: height 0.3s ease;
+}
+
+#objetivos-proyecto strong:hover::after {
+    height: 100%;
+}
+
+.objetivos-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border-width: 0;
+    border-radius: 0.75rem;
+}
+
+.objetivos-card:nth-child(1) {
+    background-color: rgba(var(--col-1), 0.1);
+    border-left: 5px solid rgba(var(--col-1), 0.7);
+}
+
+.objetivos-card:nth-child(2) {
+    background-color: rgba(var(--col-2), 0.1);
+    border-left: 5px solid rgba(var(--col-2), 0.7);
+}
+
+.objetivos-card:nth-child(3) {
+    background-color: rgba(var(--col-3), 0.1);
+    border-left: 5px solid rgba(var(--col-3), 0.7);
+}
+
+.objetivos-card:nth-child(4) {
+    background-color: rgba(var(--col-4), 0.1);
+    border-left: 5px solid rgba(var(--col-4), 0.7);
+}
+
+.objetivos-card:nth-child(5) {
+    background-color: rgba(var(--col-5), 0.1);
+    border-left: 5px solid rgba(var(--col-5), 0.7);
+}
+
+.objetivos-card:nth-child(6) {
+    background-color: rgba(var(--col-6), 0.1);
+    border-left: 5px solid rgba(var(--col-6), 0.7);
+}
+
+.objetivos-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    display: none;
+}
+
+.objetivos-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+.objetivos-card .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.objetivos-card:nth-child(1) .card-title::after {
+    background-color: rgba(var(--col-1), 0.7);
+}
+
+.objetivos-card:nth-child(2) .card-title::after {
+    background-color: rgba(var(--col-2), 0.7);
+}
+
+.objetivos-card:nth-child(3) .card-title::after {
+    background-color: rgba(var(--col-3), 0.7);
+}
+
+.objetivos-card:nth-child(4) .card-title::after {
+    background-color: rgba(var(--col-4), 0.7);
+}
+
+.objetivos-card:nth-child(5) .card-title::after {
+    background-color: rgba(var(--col-5), 0.7);
+}
+
+.objetivos-card:nth-child(6) .card-title::after {
+    background-color: rgba(var(--col-6), 0.7);
+}
+
+.objetivos-card .card-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    transition: width 0.3s ease;
+}
+
+.objetivos-card:hover .card-title::after {
+    width: 100px;
+}
+
+.objetivos-card .card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.objetivos-card strong {
+    position: relative;
+    z-index: 1;
+}
+
+.objetivos-card strong::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    background-color: rgba(var(--bs-primary-rgb), 0.15);
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: height 0.3s ease;
+}
+
+.objetivos-card strong:hover::after {
+    height: 100%;
+}
+
+#preguntas-clave .accordion {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#accordionPreguntasClave .accordion-item {
+    border: none;
+    margin-bottom: 0.5rem;
+}
+
+#accordionPreguntasClave .accordion-button {
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border-radius: 0.5rem !important;
+    background-color: var(--bs-body-secondary);
+}
+
+#accordionPreguntasClave .accordion-button:not(.collapsed) {
+    background: linear-gradient(135deg, var(--bs-body-secondary) 0%, rgba(var(--bs-primary-rgb), 0.1) 100%);
+    color: var(--hero-strong);
+    box-shadow: none;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+#accordionPreguntasClave .accordion-button:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+#accordionPreguntasClave .accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+    z-index: 3;
+}
+
+#accordionPreguntasClave .accordion-body {
+    background-color: var(--bs-body-secondary);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+#accordionPreguntasClave .accordion-body p {
+    margin-bottom: 1rem;
+}
+
+#accordionPreguntasClave .accordion-body ul {
+    padding-left: 1.25rem;
+}
+
+#accordionPreguntasClave .accordion-body li {
+    margin-bottom: 0.75rem;
+}
+
+#accordionPreguntasClave .accordion-body .small a {
+    color: var(--bs-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px dashed rgba(var(--bs-primary-rgb), 0.4);
+}
+
+#accordionPreguntasClave .accordion-body .small a:hover {
+    border-bottom: 1px solid var(--bs-primary);
+}
+
+#evaluacion-datos {
+    background-color: var(--bs-body-secondary);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+#evaluacion-datos ul {
+    padding-left: 1.25rem;
+}
+#evaluacion-datos li {
+    margin-bottom: 0.75rem;
+}
+#evaluacion-datos strong {
+    color: var(--hero-strong);
+}
+
+#evaluacion-datos .flip-card {
+    position: relative;
+    perspective: 1000px;
+}
+
+#evaluacion-datos .flip-card-inner {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+#evaluacion-datos .flip-card-front,
+#evaluacion-datos .flip-card-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#evaluacion-datos .flip-card-front {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#evaluacion-datos .flip-card-back {
+    transform: rotateY(180deg);
+    background-color: var(--bs-body);
+    color: var(--bs-body-color);
+}
+
+#evaluacion-datos .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.viabilidad-table-wrapper {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#viabilidad-riesgos table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#viabilidad-riesgos thead {
+    background: linear-gradient(135deg, rgba(var(--bs-primary-rgb),0.1), rgba(var(--bs-primary-rgb),0.05));
+}
+
+#viabilidad-riesgos th {
+    color: var(--bs-body-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem;
+    border-bottom: 2px solid rgba(var(--bs-primary-rgb),0.2);
+}
+
+#viabilidad-riesgos td {
+    background-color: var(--bs-body);
+    padding: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+#viabilidad-riesgos tbody tr:not(:last-child) td {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+#viabilidad-riesgos tbody tr:hover td {
+    background-color: rgba(var(--bs-primary-rgb),0.05);
+}  
+
+#viabilidad-riesgos .table-responsive {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#viabilidad-riesgos table {
+    margin-bottom: 0;
+}
+
+#viabilidad-riesgos th {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-body-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    padding: 1rem;
+}
+
+#viabilidad-riesgos td {
+    padding: 1rem;
+    vertical-align: middle;
+    transition: background-color 0.2s ease;
+}
+
+#viabilidad-riesgos tr:hover td {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+.bg-ods4-opacity {
+    background: linear-gradient(135deg, rgba(188, 31, 44, 0.2) 0%, rgba(188, 31, 44, 0.3) 100%) !important;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(188, 31, 44, 0.1);
+    border-left: 5px solid rgba(188, 31, 44, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-ods4-opacity:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(188, 31, 44, 0.15);
+}
+
+.bg-ods8-opacity {
+    background: linear-gradient(135deg, rgba(163, 28, 68, 0.2) 0%, rgba(163, 28, 68, 0.3) 100%) !important;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(163, 28, 68, 0.1);
+    border-left: 5px solid rgba(163, 28, 68, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-ods8-opacity:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(163, 28, 68, 0.15);
+}
+
+#ods-objectives h3 {
+    color: var(--bs-body-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+#ods-objectives h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: currentColor;
+    opacity: 0.5;
+}
+
+#ods-objectives ul {
+    padding-left: 1.25rem;
+}
+
+#ods-objectives li {
+    margin-bottom: 0.75rem;
+}
+
+#ods-objectives strong {
+    position: relative;
+    z-index: 1;
+}
+
+#ods-objectives strong::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    background-color: rgba(var(--bs-primary-rgb), 0.15);
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: height 0.3s ease;
+}
+
+#ods-objectives strong:hover::after {
+    height: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+section:nth-child(2) { animation-delay: 0.1s; }
+section:nth-child(3) { animation-delay: 0.2s; }
+section:nth-child(4) { animation-delay: 0.3s; }
+section:nth-child(5) { animation-delay: 0.4s; }
+
+:root {
+    --col-1: 0, 123, 255;   /* azul */
+    --col-2: 40, 167, 69;   /* verde */
+    --col-3: 255, 193, 7;   /* amarillo */
+    --col-4: 23, 162, 184;  /* turquesa */
+    --col-5: 220, 53, 69;   /* rojo */
+    --col-6: 108, 117, 125; /* gris oscuro */
+}

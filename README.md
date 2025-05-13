@@ -1,5 +1,7 @@
 # Proyecto de Predicción de Inserción Laboral
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 ## Descripción
 
 Este proyecto desarrollado con Flask y Bootstrap 5.3.5, esta diseñado para la implementacion de un modelo de predicción para predecir (valga la redundancia) la inserción laboral de estudiantes de Ingeniería en Sistemas y Computación. La aplicación web permite a los usuarios interactuar con el modelo de predicción a través de una interfaz sencilla y moderna.

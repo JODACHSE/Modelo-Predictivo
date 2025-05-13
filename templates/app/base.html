@@ -54,44 +54,114 @@
                         <a class="nav-link" href="{{ url_for('home') }}">Inicio</a>
                     </li>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('objetivos') }}">Objetivos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('metodologia') }}">Metodología</a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Modelo Predictivo
+                            Entendimiento del negocio y los datos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('por_que') }}">
-                                    ¿Por qué un modelo predictivo?
+                                <a class="dropdown-item" href="{{ url_for('entendimiento') }}#objetivos-de-negocio">
+                                    Objetivos de negocio
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('como_funciona') }}">
-                                    ¿Cómo funciona un modelo predictivo tradicional?
+                                <a class="dropdown-item" href="{{ url_for('entendimiento') }}#preguntas-clave">
+                                    Preguntas clave
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('dataset') }}">
-                                    El Dataset del proyecto
+                                <a class="dropdown-item" href="{{ url_for('entendimiento') }}#evaluacion-datos">
+                                    Evaluación de datos
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('entrenamiento') }}">
-                                    ¿Cómo se entrena el modelo?
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ url_for('modelo_predictivo') }}">
-                                    Interactúa con nuestro modelo
+                                <a class="dropdown-item" href="{{ url_for('entendimiento') }}#viabilidad-riesgos">
+                                Análisis de viabilidad del modelo
                                 </a>
                             </li>
                         </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Ingeniería de datos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_datos') }}">
+                                    Selección
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_datos') }}">
+                                    Limpieza
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_datos') }}">
+                                    Transformación
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_datos') }}">
+                                Documentación
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Ingeniería del modelo
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
+                                    Selección de algoritmos
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
+                                    Validación
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
+                                    Entrenamiento
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
+                                    Ajuste de hiperparámetros
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
+                                    Evaluación del modelo
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
+                                    Metricas de desempeño
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
+                                    Análisis de riesgos
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('modelo_predictivo') }}">Interactua con el modelo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('conclusiones') }}">Conclusiones</a>
@@ -114,21 +184,21 @@
     </main>
 
     <footer
-        class="d-flex flex-wrap flex-md-nowrap align-items-center justify-content-center text-center py-3 border-top"
+        class="d-flex flex-column flex-md-row align-items-center justify-content-center text-center py-3 border-top"
         data-bs-theme="{{ theme }}">
         <!-- Logo U. Cundinamarca -->
-        <a class="mb-2 mb-md-0"
+        <a class="mb-3 mb-md-0 text-center"
             href="https://www.ucundinamarca.edu.co/index.php/programas/pregrado/facultad-de-ingenieria/ingenieria-de-sistemas-y-computacion">
             <img id="logo"
-                data-dark-src="{{ url_for('static', filename='img/logotipo/IMAGOTIPO HORIZONTAL BLANCO.png') }}"
-                data-light-src="{{ url_for('static', filename='img/logotipo/IMAGOTIPO HORIZONTAL NEGRO.png') }}"
-                src="{{ url_for('static', filename='img/logotipo/IMAGOTIPO HORIZONTAL BLANCO.png') }}" alt="Logotipo"
+                data-dark-src="{{ url_for('static', filename='img/imagotipo/IMAGOTIPO HORIZONTAL BLANCO.png') }}"
+                data-light-src="{{ url_for('static', filename='img/imagotipo/IMAGOTIPO HORIZONTAL NEGRO.png') }}"
+                src="{{ url_for('static', filename='img/imagotipo/IMAGOTIPO HORIZONTAL BLANCO.png') }}" alt="Logotipo de la Universidad de Cundinamarca"
                 height="40">
         </a>
 
         <div class="vr d-none d-md-block mx-md-4 mx-lg-5"></div>
 
-        <span>
+        <span class="text-center">
             Proyecto desarrollado por
             <span class="brand-footer">Wololo</span>
             -
