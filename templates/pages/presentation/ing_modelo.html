@@ -2,5 +2,175 @@
 
 {% block title %}Ing.Modelo{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation/ing_modelo.css') }}">
+{% endblock %}
+
 {% block content %}
+<div class="container py-4">
+    <div class="hero-section mb-4">
+        <h1 class="page-title">Ingeniería del Modelo Predictivo</h1>
+        <p>Conoce cómo construimos un modelo de regresión logística para predecir la empleabilidad de ingenieros de sistemas. Desde los datos hasta la validación.</p>
+    </div>
+
+    <!-- Dropdown - Contenido de la página -->
+    <div class="dropdown on-this-page mb-4">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button"
+                id="onThisPageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            En esta página
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="onThisPageDropdown">
+            <li><a class="dropdown-item" href="#algoritmo">Selección del Algoritmo</a></li>
+            <li><a class="dropdown-item" href="#datos">Recolección y Procesamiento</a></li>
+            <li><a class="dropdown-item" href="#entrenamiento">Entrenamiento</a></li>
+            <li><a class="dropdown-item" href="#validacion">Validación</a></li>
+            <li><a class="dropdown-item" href="#hiperparametros">Hiperparámetros</a></li>
+            <li><a class="dropdown-item" href="#recomendaciones">Recomendaciones</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <!-- Selección de algoritmo -->
+        <div class="col-12">
+            <div id="algoritmo" class="card modelo-card active">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#algoritmoContent" aria-expanded="true">
+                    <i class="bi bi-cpu modelo-icon"></i>
+                    <h3>1. Selección del Algoritmo</h3>
+                </div>
+                <div id="algoritmoContent" class="collapse show">
+                    <div class="card-body">
+                        <p>Elegimos <strong>regresión logística</strong> por ser ideal para clasificación binaria (empleado/no empleado). Es interpretable, rápida y adecuada para escenarios donde la variable objetivo es categórica.</p>
+                        <div>
+                            <span class="badge bg-primary">Machine Learning Supervisado</span>
+                            <span class="badge bg-secondary">Clasificación</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recolección y procesamiento -->
+        <div class="col-12">
+            <div id="datos" class="card modelo-card">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#datosContent" aria-expanded="false">
+                    <i class="bi bi-database modelo-icon"></i>
+                    <h3>2. Recolección y Procesamiento de Datos</h3>
+                </div>
+                <div id="datosContent" class="collapse">
+                    <div class="card-body">
+                        <p>Los datos se recolectaron de <strong>SPADIES</strong>, <em>scraping</em> de portales de empleo y encuestas a egresados. Se aplicó limpieza: eliminación de valores nulos, normalización y codificación de categorías.</p>
+                        <ul>
+                            <li><strong>SPADIES:</strong> Datos oficiales de educación superior.</li>
+                            <li><strong>Scraping:</strong> Ofertas laborales reales.</li>
+                            <li><strong>Encuestas:</strong> Opiniones y trayectorias reales.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Entrenamiento del modelo -->
+        <div class="col-12">
+            <div id="entrenamiento" class="card modelo-card">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#entrenamientoContent" aria-expanded="false">
+                    <i class="bi bi-gear modelo-icon"></i>
+                    <h3>3. Entrenamiento del Modelo</h3>
+                </div>
+                <div id="entrenamientoContent" class="collapse">
+                    <div class="card-body">
+                        <p>Usamos el 80% del dataset para entrenamiento y 20% para validación. Aplicamos descenso de gradiente y función sigmoide para ajustar los coeficientes.</p>
+                        <p><strong>¿Por qué funciona?</strong> Porque captura relaciones no lineales entre múltiples variables.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Validación del modelo -->
+        <div class="col-12">
+            <div id="validacion" class="card modelo-card">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#validacionContent" aria-expanded="false">
+                    <i class="bi bi-check2-circle modelo-icon"></i>
+                    <h3>4. Validación del Modelo</h3>
+                </div>
+                <div id="validacionContent" class="collapse">
+                    <div class="card-body">
+                        <p>Validamos con <strong>k-fold cross-validation</strong> y medimos con:</p>
+                        <ul>
+                            <li><strong>Accuracy:</strong> Exactitud global</li>
+                            <li><strong>Precision:</strong> Qué tan confiables son los positivos</li>
+                            <li><strong>Recall:</strong> Qué tantos casos reales positivos captura</li>
+                            <li><strong>F1-Score:</strong> Balance entre precision y recall</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ajuste de hiperparámetros -->
+        <div class="col-12">
+            <div id="hiperparametros" class="card modelo-card">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#hiperparametrosContent" aria-expanded="false">
+                    <i class="bi bi-sliders modelo-icon"></i>
+                    <h3>5. Ajuste de Hiperparámetros</h3>
+                </div>
+                <div id="hiperparametrosContent" class="collapse">
+                    <div class="card-body">
+                        <p>Probamos diferentes valores de <code>penalty</code>, <code>C</code> (regularización) y <code>solver</code> usando <strong>Grid Search</strong>.</p>
+                        <p>Se identificó la mejor configuración para maximizar la generalización sin sobreajuste.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recomendaciones -->
+        <div class="col-12">
+            <div id="recomendaciones" class="card modelo-card">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#recomendacionesContent" aria-expanded="false">
+                    <i class="bi bi-lightbulb modelo-icon"></i>
+                    <h3>6. Recomendaciones Clave</h3>
+                </div>
+                <div id="recomendacionesContent" class="collapse">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="bi bi-search"></i>Invertir en certificaciones técnicas (AWS, Cisco, Scrum)</li>
+                            <li class="list-group-item"><i class="bi bi-flask"></i>Participar en proyectos prácticos durante la carrera</li>
+                            <li class="list-group-item"><i class="bi bi-compass"></i>Monitorear tendencias del mercado para ajustar currículos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-end mt-4">
+        <a href="https://github.com/JODACHSE/Modelo-Predictivo" class="github-btn" target="_blank">
+            <i class="bi bi-github"></i>Ver Repositorio en GitHub
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Activar/desactivar tarjetas al hacer clic
+        const cardHeaders = document.querySelectorAll('.modelo-card .card-header');
+        
+        cardHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const card = this.closest('.modelo-card');
+                
+                if (card.classList.contains('active')) {
+                    card.classList.remove('active');
+                } else {
+                    document.querySelectorAll('.modelo-card').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    card.classList.add('active');
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
