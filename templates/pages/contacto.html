@@ -1,6 +1,143 @@
 {% extends 'app/base.html' %}
 
-{% block title %}Contactenos{% endblock %}
+{% block title %}Contáctenos{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation/contacto.css') }}">
+{% endblock %}
 
 {% block content %}
+<!-- Sección de Desarrolladores -->
+<section class="developers-section mb-5">
+    <h1 class="page-title mb-5">Nuestro equipo</h1>
+    
+    <div class="container">
+        <div class="row g-4">
+            <!-- Desarrollador 1 -->
+            <div class="col-md-6">
+                <div class="dev-card">
+                    <div class="dev-card-inner">
+                        <div class="dev-image-container">
+                            <img src="{{ url_for('static', filename='img/developers/Jonathan.png') }}" alt="Desarrollador 1" class="dev-image">
+                            <div class="dev-overlay"></div>
+                        </div>
+                        <div class="dev-info">
+                            <h3 class="dev-name">Jonathan Chavarro</h3>
+                            <p class="dev-role">Ingeniero de Sistemas y Computación</p>
+                            <div class="dev-social">
+                                <a href="https://www.instagram.com/jonathandavid_22212/" target="_blank" class="social-icon">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="https://github.com/JODACHSE" target="_blank" class="social-icon">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desarrollador 2 -->
+            <div class="col-md-6">
+                <div class="dev-card">
+                    <div class="dev-card-inner">
+                        <div class="dev-image-container">
+                            <img src="{{ url_for('static', filename='img/developers/Andres.jpg') }}" alt="Desarrollador 2" class="dev-image">
+                            <div class="dev-overlay"></div>
+                        </div>
+                        <div class="dev-info">
+                            <h3 class="dev-name">Andres Rodríguez</h3>
+                            <p class="dev-role">Ingeniero de Sistemas y Computación</p>
+                            <div class="dev-social">
+                                <a href="https://www.instagram.com/andres.rodcor/" target="_blank" class="social-icon">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="https://github.com/N3X4N" target="_blank" class="social-icon">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Contacto -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-container">
+            <div class="contact-header text-center mb-4">
+                <h2>¿Quieres compartir tu experiencia con nosotros?</h2>
+                <p class="lead">Tu opinión es valiosa para mejorar nuestro modelo predictivo y ayudar a más estudiantes a encontrar su camino profesional.</p>
+            </div>
+            
+            <form id="contactForm" class="needs-validation" novalidate>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="nombreInput" placeholder="Tu nombre" required>
+                            <label for="nombreInput">Nombre completo</label>
+                            <div class="invalid-feedback">
+                                Por favor, ingresa tu nombre.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="emailInput" placeholder="nombre@ejemplo.com" required>
+                            <label for="emailInput">Correo electrónico</label>
+                            <div class="invalid-feedback">
+                                Por favor, ingresa un correo electrónico válido.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="mensajeTextarea" placeholder="Tu mensaje" style="height: 150px"></textarea>
+                            <label for="mensajeTextarea">Mensaje (opcional)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary contact-btn">
+                            <i class="bi bi-send me-2"></i>Enviar mensaje
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/presentation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/presentation/contacto.js') }}"></script>
+<script>
+    // Validación del formulario
+    (function() {
+        'use strict';
+        
+        const form = document.getElementById('contactForm');
+        
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+                // Aquí puedes agregar el código para enviar el formulario por AJAX
+                alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+                form.reset();
+            }
+            
+            form.classList.add('was-validated');
+        }, false);
+    })();
+</script>
 {% endblock %}
