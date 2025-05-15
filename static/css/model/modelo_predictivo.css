@@ -1,0 +1,85 @@
+/* Contenedor de botones seleccionables */
+.selectable-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Estilo base para botones seleccionables */
+.selectable-button {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border: 2px solid var(--bs-primary);
+    color: var(--bs-body-color);
+    margin-bottom: 10px;
+}
+
+/* Icono dentro del botón */
+.selectable-button i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+/* Hover para botones no seleccionados */
+.selectable-button:hover:not(.selected) {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(var(--bs-primary-rgb), 0.3);
+}
+
+/* Estilo para botones seleccionados en tema claro */
+html[data-bs-theme="light"] .selectable-button.selected {
+    background-color: var(--bs-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--bs-primary-rgb), 0.4);
+}
+
+/* Estilo para botones seleccionados en tema oscuro */
+html[data-bs-theme="dark"] .selectable-button.selected {
+    background-color: var(--hero-border);
+    color: var(--hero-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--bs-primary-rgb), 0.4);
+}
+
+/* Estilo para botones en tema oscuro */
+html[data-bs-theme="dark"] .selectable-button {
+    border-color: var(--hero-border);
+}
+
+/* Animación para botones */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--bs-primary-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
+    }
+}
+
+.selectable-button.selected {
+    animation: pulse 1.5s ease-out 1;
+}
+
+/* Estilos responsivos */
+@media (max-width: 576px) {
+    .selectable-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+    
+    .selectable-buttons-container {
+        gap: 6px;
+    }
+}

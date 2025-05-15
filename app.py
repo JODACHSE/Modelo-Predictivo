@@ -7,6 +7,8 @@ Modelo de prediccion para la insercion laboral de estudiantes de ingeniería en 
 from flask import Flask, render_template, request
 import joblib
 import numpy as np 
+from python.entrenar_modelo import make_prediction
+
 model = joblib.load('model/logreg_model.pkl')
 
 app = Flask(__name__)
@@ -34,11 +36,6 @@ def ing_datos():
 def ing_modelo():
     return render_template("pages/presentation/ing_modelo.html")
 
-# Modelo Predictivo
-@app.route("/modelo-predictivo")
-def modelo_predictivo():
-    return render_template("pages/model/modelo_predictivo.html")
-
 # Conclusiones y Contacto
 @app.route("/conclusiones")
 def conclusiones():
@@ -46,7 +43,7 @@ def conclusiones():
 
 @app.route("/contacto")
 def contacto():
-    return render_template("pages/presentation/contacto.html")
+    return render_template("pages/contacto.html")
 
 
 # Paginas de model
@@ -68,42 +65,6 @@ def dataset():
 @app.route("/entrenamiento")
 def entrenamiento():
     return render_template("pages/model/entrenamiento.html")
-
-
-# Preprocesamiento de los datos
-def preprocess_input(experience, skills, languages):
-    # Función para extraer años de experiencia
-    def extract_experience(qualifications):
-        if isinstance(qualifications, str) and 'year' in qualifications.lower():
-            years = [int(s) for s in qualifications.split() if s.isdigit()]
-            return years[0] if years else 0
-        return 0
-
-    # Función para contar las habilidades
-    def count_skills(text):
-        skills_keywords = ['management', 'design', 'analysis', 'development', 'engineering', 'programming']
-        if isinstance(text, str):
-            return sum(keyword.lower() in text.lower() for keyword in skills_keywords)
-        return 0
-
-    # Función para contar lenguajes de programación
-    def count_programming_languages(text):
-        programming_languages = ['Python', 'JavaScript', 'Java', 'C++', 'Ruby', 'C#', 'PHP', 'Swift', 'Go', 'Kotlin']
-        if isinstance(text, str):
-            return sum(language.lower() in text.lower() for language in programming_languages)
-        return 0
-
-    # Contar las habilidades y lenguajes de programación
-    skills_count = count_skills(skills)
-    programming_count = count_programming_languages(languages)
-
-    # Convertir la experiencia del usuario en el formato adecuado
-    years_of_experience = extract_experience(experience)
-
-    # Crear el vector de entrada
-    input_data = np.array([[years_of_experience, skills_count, programming_count]])
-
-    return input_data
 
 
 @app.route("/modelo_predictivo", methods=["GET", "POST"])
