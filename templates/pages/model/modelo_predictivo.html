@@ -2,6 +2,150 @@
 
 {% block title %}Modelo predictivo{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentation.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/model/modelo_predictivo.css') }}">
+{% endblock %}
+
 {% block content %}
     <h1>Modelo predictivo</h1>
+    <header class="text-center bg-primary text-white p-4 shadow-lg">
+        <h1 class="fw-bold">Modelo de Predicción de Empleo</h1>
+        <h2 class="fs-4">Descubre si tienes posibilidades de conseguir empleo basado en tu perfil</h2>
+    </header>
+
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card shadow-lg p-4 rounded-3" style="max-width: 600px; width: 100%;">
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="years_of_experience">Años de experiencia</label>
+                        <input type="number" name="years_of_experience" id="years_of_experience" class="form-control" placeholder="Ingresa tus años de experiencia" required step="1">
+                    </div>
+
+                    <!-- Lenguajes de Programación: Botones seleccionables con íconos -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="languages">Lenguajes de programación que conoces:</label>
+                        <div class="selectable-buttons-container" id="languages-container">
+                            <button type="button" class="selectable-button" data-value="Python" data-icon="fab fa-python"><i class="fab fa-python"></i> Python</button>
+                            <button type="button" class="selectable-button" data-value="JavaScript" data-icon="fab fa-js"><i class="fab fa-js"></i> JavaScript</button>
+                            <button type="button" class="selectable-button" data-value="Java" data-icon="fab fa-java"><i class="fab fa-java"></i> Java</button>
+                            <button type="button" class="selectable-button" data-value="C++" data-icon="fab fa-cuttlefish"><i class="fab fa-cuttlefish"></i> C++</button>
+                            <button type="button" class="selectable-button" data-value="Ruby" data-icon="fas fa-gem"><i class="fas fa-gem"></i> Ruby</button>
+                            <button type="button" class="selectable-button" data-value="C#" data-icon="fab fa-cuttlefish"><i class="fab fa-cuttlefish"></i> C#</button>
+                            <button type="button" class="selectable-button" data-value="PHP" data-icon="fab fa-php"><i class="fab fa-php"></i> PHP</button>
+                            <button type="button" class="selectable-button" data-value="Swift" data-icon="fab fa-app-store-ios"><i class="fab fa-app-store-ios"></i> Swift</button>
+                            <button type="button" class="selectable-button" data-value="Go" data-icon="fab fa-go"><i class="fab fa-go"></i> Go</button>
+                            <button type="button" class="selectable-button" data-value="Kotlin" data-icon="fab fa-kotlin"><i class="fab fa-kotlin"></i> Kotlin</button>
+                        </div>
+                        <!-- Campo oculto para enviar los lenguajes seleccionados -->
+                        <input type="hidden" name="languages" id="languages">
+                    </div>
+
+                    <!-- Habilidades Blandas: Botones seleccionables con íconos -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="soft_skills">Selecciona tus habilidades blandas:</label>
+                        <div class="selectable-buttons-container" id="soft-skills-container">
+                            <button type="button" class="selectable-button" data-value="Comunicación" data-icon="fas fa-comment"><i class="fas fa-comment"></i> Comunicación</button>
+                            <button type="button" class="selectable-button" data-value="Trabajo en equipo" data-icon="fas fa-users"><i class="fas fa-users"></i> Trabajo en equipo</button>
+                            <button type="button" class="selectable-button" data-value="Liderazgo" data-icon="fas fa-user-tie"><i class="fas fa-user-tie"></i> Liderazgo</button>
+                            <button type="button" class="selectable-button" data-value="Creatividad" data-icon="fas fa-lightbulb"><i class="fas fa-lightbulb"></i> Creatividad</button>
+                            <button type="button" class="selectable-button" data-value="Gestión del tiempo" data-icon="fas fa-clock"><i class="fas fa-clock"></i> Gestión del tiempo</button>
+                        </div>
+                        <!-- Campo oculto para enviar las habilidades seleccionadas -->
+                        <input type="hidden" name="soft_skills" id="soft_skills">
+                    </div>
+
+                    <!-- Expectativa Salarial: Dropdown -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="salary_expectation">Expectativa salarial (rango en pesos colombianos)</label>
+                        <select name="salary_expectation" id="salary_expectation" class="form-select" required>
+                            <option value="1600000">1,600,000 COP</option>
+                            <option value="3000000">3,000,000 COP</option>
+                            <option value="5000000">5,000,000 COP</option>
+                            <option value="7000000">7,000,000 COP</option>
+                            <option value="10000000">10,000,000 COP</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Predecir</button>
+                </form>
+
+                {% if result is not none %}
+                <div class="alert alert-info text-center mt-4 fw-bold">
+                    ¿Se puede conseguir empleo?
+                    <br>
+                    <span class="fs-4">{{ 'Sí' if result == 'Sí' else 'No' }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para manejar la selección de botones
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar arrays para almacenar selecciones
+            let selectedLanguages = [];
+            let selectedSoftSkills = [];
+            
+            // Configurar los botones de lenguajes
+            const languageButtons = document.querySelectorAll('#languages-container .selectable-button');
+            languageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    
+                    // Toggle selección
+                    if (this.classList.contains('selected')) {
+                        // Quitar de seleccionados
+                        this.classList.remove('selected');
+                        selectedLanguages = selectedLanguages.filter(lang => lang !== value);
+                    } else {
+                        // Añadir a seleccionados
+                        this.classList.add('selected');
+                        selectedLanguages.push(value);
+                    }
+                    
+                    // Actualizar campo oculto
+                    document.getElementById('languages').value = selectedLanguages.join(', ');
+                });
+            });
+            
+            // Configurar los botones de habilidades blandas
+            const skillButtons = document.querySelectorAll('#soft-skills-container .selectable-button');
+            skillButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    
+                    // Toggle selección
+                    if (this.classList.contains('selected')) {
+                        // Quitar de seleccionados
+                        this.classList.remove('selected');
+                        selectedSoftSkills = selectedSoftSkills.filter(skill => skill !== value);
+                    } else {
+                        // Añadir a seleccionados
+                        this.classList.add('selected');
+                        selectedSoftSkills.push(value);
+                    }
+                    
+                    // Actualizar campo oculto
+                    document.getElementById('soft_skills').value = selectedSoftSkills.join(', ');
+                });
+            });
+            
+            // Aplicar tema actual a los botones
+            applyThemeToButtons();
+        });
+        
+        // Función para aplicar el tema actual a los botones
+        function applyThemeToButtons() {
+            const theme = document.documentElement.getAttribute('data-bs-theme');
+            document.querySelectorAll('.selectable-button').forEach(button => {
+                button.setAttribute('data-theme', theme);
+            });
+        }
+        
+        // Escuchar cambios de tema
+        document.addEventListener('themeChanged', applyThemeToButtons);
+    </script>
 {% endblock %}
