@@ -83,3 +83,62 @@ html[data-bs-theme="dark"] .selectable-button {
         gap: 6px;
     }
 }
+
+.feedback-container {
+    background-color: var(--bs-body-secondary);
+    transition: all 0.3s ease;
+    border-color: rgba(var(--bs-primary-rgb), 0.2) !important;
+}
+
+html[data-bs-theme="light"] .feedback-container {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+html[data-bs-theme="dark"] .feedback-container {
+    background-color: rgba(33, 37, 41, 0.6);
+    border-color: var(--hero-border) !important;
+}
+
+.feedback-content {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Estilos para el formulario de correo */
+#sendFeedbackForm {
+    background-color: var(--bs-body-secondary);
+    transition: all 0.3s ease;
+    border-color: rgba(var(--bs-primary-rgb), 0.2) !important;
+}
+
+html[data-bs-theme="light"] #sendFeedbackForm {
+    background-color: rgba(var(--bs-primary-rgb), 0.03);
+}
+
+html[data-bs-theme="dark"] #sendFeedbackForm {
+    background-color: rgba(33, 37, 41, 0.6);
+    border-color: var(--hero-border) !important;
+}
+
+/* Animación para el formulario */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#emailForm.show {
+    animation: slideDown 0.3s ease forwards;
+}
+
+/* Mejoras responsivas para la sección de feedback */
+@media (max-width: 576px) {
+    .feedback-content {
+        font-size: 0.9rem;
+    }
+}

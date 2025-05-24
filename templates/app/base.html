@@ -26,7 +26,7 @@
     <link id="bootstrap-local" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet"
         style="display: none;">
 
-        <!-- Font Awesome -->
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     
     <!-- CSS local -->
@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <nav id="mainNavbar" class="navbar navbar-expand-lg" data-bs-theme="dark">
+    <nav id="mainNavbar" class="navbar navbar-expand-xl" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
                 <img src="{{ url_for('static', filename='Wololo Icon.png') }}" alt="Wololo Icon" height="50"
@@ -47,8 +47,8 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-center justify-content-lg-end" id="navbarNav">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
                     {% if request.path != url_for('home') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('home') }}">Inicio</a>
@@ -56,11 +56,11 @@
                     {% endif %}
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="entendimientoDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Entendimiento del negocio y los datos
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="entendimientoDropdown">
                             <li>
                                 <a class="dropdown-item" href="{{ url_for('entendimiento') }}#objetivos-de-negocio">
                                     Objetivos de negocio
@@ -85,11 +85,11 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="ingDatosDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Ingeniería de datos
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="ingDatosDropdown">
                             <li>
                                 <a class="dropdown-item" href="{{ url_for('ing_datos') }}">
                                     Selección
@@ -114,11 +114,11 @@
                     </li>
                     
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="ingModeloDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Ingeniería del modelo
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="ingModeloDropdown">
                             <li>
                                 <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
                                     Selección de algoritmos
@@ -139,9 +139,6 @@
                                     Ajuste de hiperparámetros
                                 </a>
                             </li>
-                        </ul>
-
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
                                 <a class="dropdown-item" href="{{ url_for('ing_modelo') }}">
                                     Evaluación del modelo
@@ -171,7 +168,7 @@
                     </li>
                 </ul>
 
-                <button id="themeToggle" class="btn btn-outline-secondary" type="button" aria-label="Cambiar tema">
+                <button id="themeToggle" class="btn btn-outline-secondary ms-auto" type="button" aria-label="Cambiar tema">
                     <i id="sunIcon" class="bi bi-sun"></i>
                     <i id="moonIcon" class="bi bi-moon" style="display: none;"></i>
                 </button>
