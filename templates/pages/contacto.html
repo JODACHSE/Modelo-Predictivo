@@ -78,17 +78,14 @@
                 <div class="row g-4">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="nombreInput" placeholder="Tu nombre" required>
-                            <label for="nombreInput">Nombre completo</label>
-                            <div class="invalid-feedback">
-                                Por favor, ingresa tu nombre.
-                            </div>
+                            <input type="text" class="form-control" id="nombreInput" name="nombre">
+                            <label for="nombreInput">Nombre completo (opcional)</label>
                         </div>
                     </div>
                     
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="emailInput" placeholder="nombre@ejemplo.com" required>
+                            <input type="email" class="form-control" id="emailInput" name="email" required>
                             <label for="emailInput">Correo electrónico</label>
                             <div class="invalid-feedback">
                                 Por favor, ingresa un correo electrónico válido.
@@ -98,8 +95,11 @@
                     
                     <div class="col-12">
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" id="mensajeTextarea" placeholder="Tu mensaje" style="height: 150px"></textarea>
-                            <label for="mensajeTextarea">Mensaje (opcional)</label>
+                            <textarea class="form-control" id="mensajeTextarea" name="mensaje" style="height: 150px" required></textarea>
+                            <label for="mensajeTextarea">Mensaje</label>
+                            <div class="invalid-feedback">
+                                Por favor, ingresa un mensaje.
+                            </div>
                         </div>
                     </div>
                     
@@ -113,31 +113,27 @@
         </div>
     </div>
 </section>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">¡Mensaje Enviado!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tu mensaje ha sido enviado correctamente. Gracias por contactarnos.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block extra_js %}
 <script src="{{ url_for('static', filename='js/presentation.js') }}"></script>
 <script src="{{ url_for('static', filename='js/presentation/contacto.js') }}"></script>
-<script>
-    // Validación del formulario
-    (function() {
-        'use strict';
-        
-        const form = document.getElementById('contactForm');
-        
-        form.addEventListener('submit', function(event) {
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-            } else {
-                event.preventDefault();
-                // Aquí puedes agregar el código para enviar el formulario por AJAX
-                alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-                form.reset();
-            }
-            
-            form.classList.add('was-validated');
-        }, false);
-    })();
-</script>
 {% endblock %}

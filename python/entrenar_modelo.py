@@ -41,10 +41,11 @@ def make_prediction(experience, skills, programming_languages):
     
     return "Sí" if prediction == 1 else "No"
 
-# Ejemplo de uso
-user_experience = "3 years of experience in software development"
-user_skills = "management, development, programming"
-user_languages = "Python, Java, C++"
+# El código de ejemplo solo se ejecutará si este archivo se ejecuta directamente
+if __name__ == "__main__":
+    user_experience = "3 years of experience in software development"
+    user_skills = "management, development, programming"
+    user_languages = "Python, Java, C++"
 
-prediction = make_prediction(user_experience, user_skills, user_languages)
-print(f"¿Puede ser contratado? {prediction}")
+    prediction = make_prediction(user_experience, user_skills, user_languages)
+    print(f"¿Puede ser contratado? {prediction}")

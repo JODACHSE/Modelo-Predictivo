@@ -4,10 +4,12 @@ Modelo de prediccion para la insercion laboral de estudiantes de ingeniería en 
 @author: Andres Rodriguez
 @author: Jonathan Chavarro
 """
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import joblib
 import numpy as np 
 from python.entrenar_modelo import make_prediction
+from python.feedback import generate_feedback
+from python.email import send_email
 
 model = joblib.load('model/logreg_model.pkl')
 
@@ -70,6 +72,7 @@ def entrenamiento():
 @app.route("/modelo_predictivo", methods=["GET", "POST"])
 def modelo_predictivo():
     result = None
+    feedback = None
     if request.method == "POST":
         # Obtener los datos del formulario
         experience = request.form['years_of_experience']
@@ -82,8 +85,69 @@ def modelo_predictivo():
         else:
             # Realizar la predicción
             result = make_prediction(experience, skills, languages)
+            # Generar feedback personalizado
+            feedback = generate_feedback(experience, skills, languages, result)
 
-    return render_template("pages/model/modelo_predictivo.html", result=result)
+    return render_template("pages/model/modelo_predictivo.html", result=result, feedback=feedback)
+
+@app.route("/enviar_feedback", methods=["POST"])
+def enviar_feedback():
+    try:
+        # Obtener datos del formulario
+        email = request.form.get('email')
+        name = request.form.get('name')
+        feedback = request.form.get('feedback')
+        experience = request.form.get('experience')
+        skills = request.form.get('skills')
+        languages = request.form.get('languages')
+        prediction = request.form.get('prediction')
+        
+        # Verificar datos requeridos
+        if not all([email, name, feedback]):
+            return jsonify({"success": False, "message": "Faltan datos requeridos"}), 400
+        
+        # Información del perfil para el correo
+        profile_info = {
+            "experience": experience,
+            "skills": skills,
+            "languages": languages,
+            "prediction": "Sí" if prediction == "Sí" else "No"
+        }
+        
+        # Enviar correo
+        success = send_email(email, name, feedback, profile_info)
+        
+        if success:
+            return jsonify({"success": True, "message": "Feedback enviado correctamente"})
+        else:
+            return jsonify({"success": False, "message": "Error al enviar el correo"}), 500
+    
+    except Exception as e:
+        return jsonify({"success": False, "message": f"Error: {str(e)}"}), 500
+
+
+@app.route("/enviar_contacto", methods=["POST"])
+def enviar_contacto():
+    try:
+        email = request.form.get('email')
+        nombre = request.form.get('nombre', '')
+        mensaje = request.form.get('mensaje')
+        
+        if not all([email, mensaje]):
+            return jsonify({"success": False, "message": "Faltan datos requeridos"}), 400
+        
+        from python.contacto import enviar_mensaje_contacto
+
+        success = enviar_mensaje_contacto(email, nombre, mensaje)
+        
+        if success:
+            return jsonify({"success": True, "message": "Mensaje enviado correctamente"})
+        else:
+            return jsonify({"success": False, "message": "Error al enviar el correo"}), 500
+    
+    except Exception as e:
+        return jsonify({"success": False, "message": f"Error: {str(e)}"}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)

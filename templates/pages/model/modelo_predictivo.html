@@ -8,15 +8,21 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Modelo predictivo</h1>
-    <header class="text-center bg-primary text-white p-4 shadow-lg">
-        <h1 class="fw-bold">Modelo de Predicción de Empleo</h1>
-        <h2 class="fs-4">Descubre si tienes posibilidades de conseguir empleo basado en tu perfil</h2>
-    </header>
+    <h1 class="page-title mb-5">Modelo predictivo</h1>
+
+    <section id="intro" class="hero-section mb-5">
+        <p class="lead">
+            Descubre a travez de este modelo predictivo, si tienes posibilidades de conseguir empleo basado en <strong>tu perfil</strong>
+        </p>
+    </section>
 
     <div class="container mt-5 d-flex justify-content-center">
         <div class="card shadow-lg p-4 rounded-3" style="max-width: 600px; width: 100%;">
             <div class="card-body">
+                <section class="hero-section">
+                    <h2><strong>Resuelve esta breve encuesta</strong></h2>
+                </section>
+
                 <form method="post">
                     <div class="mb-3">
                         <label class="form-label fw-bold" for="years_of_experience">Años de experiencia</label>
@@ -77,6 +83,45 @@
                     <br>
                     <span class="fs-4">{{ 'Sí' if result == 'Sí' else 'No' }}</span>
                 </div>
+
+                    <!-- Sección de Feedback -->
+                    {% if feedback %}
+                    <div class="mt-4">
+                        <h4 class="mb-3">Feedback personalizado:</h4>
+                        <div class="feedback-container p-3 border rounded">
+                            <div class="feedback-content" style="white-space: pre-line;">{{ feedback }}</div>
+                        </div>
+                        
+                        <!-- Formulario para enviar feedback por correo -->
+                        <div class="mt-4">
+                            <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="collapse" data-bs-target="#emailForm">
+                                <i class="fas fa-envelope me-2"></i>Recibir este feedback por correo
+                            </button>
+                            
+                            <div class="collapse mt-3" id="emailForm">
+                                <form id="sendFeedbackForm" class="border rounded p-3">
+                                    <div class="mb-3">
+                                        <label for="nameInput" class="form-label">Nombre completo</label>
+                                        <input type="text" class="form-control" id="nameInput" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailInput" class="form-label">Correo electrónico</label>
+                                        <input type="email" class="form-control" id="emailInput" required>
+                                    </div>
+                                    
+                                    <!-- Campos ocultos para enviar la información del perfil -->
+                                    <input type="hidden" id="feedbackText" value="{{ feedback }}">
+                                    <input type="hidden" id="experienceValue" value="{{ request.form['years_of_experience'] }}">
+                                    <input type="hidden" id="skillsValue" value="{{ request.form['soft_skills'] }}">
+                                    <input type="hidden" id="languagesValue" value="{{ request.form['languages'] }}">
+                                    <input type="hidden" id="predictionValue" value="{{ result }}">
+                                    
+                                    <button type="submit" class="btn btn-primary w-100">Enviar a mi correo</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
@@ -147,5 +192,59 @@
         
         // Escuchar cambios de tema
         document.addEventListener('themeChanged', applyThemeToButtons);
+        
+        // Manejar el envío del formulario de feedback por correo
+        document.addEventListener('DOMContentLoaded', function() {
+            const feedbackForm = document.getElementById('sendFeedbackForm');
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const name = document.getElementById('nameInput').value;
+                    const email = document.getElementById('emailInput').value;
+                    const feedback = document.getElementById('feedbackText').value;
+                    const experience = document.getElementById('experienceValue').value;
+                    const skills = document.getElementById('skillsValue').value;
+                    const languages = document.getElementById('languagesValue').value;
+                    const prediction = document.getElementById('predictionValue').value;
+                    
+                    // Crear FormData para enviar
+                    const formData = new FormData();
+                    formData.append('name', name);
+                    formData.append('email', email);
+                    formData.append('feedback', feedback);
+                    formData.append('experience', experience);
+                    formData.append('skills', skills);
+                    formData.append('languages', languages);
+                    formData.append('prediction', prediction);
+                    
+                    // Enviar solicitud AJAX
+                    fetch('/enviar_feedback', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Mostrar mensaje de éxito
+                            alert('¡Feedback enviado correctamente a tu correo!');
+                            // Cerrar el formulario
+                            const collapseElement = document.getElementById('emailForm');
+                            const bsCollapse = new bootstrap.Collapse(collapseElement);
+                            bsCollapse.hide();
+                            // Limpiar formulario
+                            feedbackForm.reset();
+                        } else {
+                            // Mostrar mensaje de error
+                            alert('Error al enviar el feedback: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error al enviar el feedback. Por favor, intenta nuevamente.');
+                    });
+                });
+            }
+        });
     </script>
 {% endblock %}
